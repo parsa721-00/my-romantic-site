@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Super Cute ❤️</title>
+    <style>
+         :root {
+            --bg: #0f1724;
+            --heart: #ff4d6d;
+            --accent: #ff6b9e
+        }
+        
+        html,
+        body {
+            height: 100%;
+            margin: 0
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #08121a, #0a1426);
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+            color: #fff;
+            text-align: center;
+            padding: 24px;
+        }
+        
+        .big-heart {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            transform: rotate(-45deg);
+            background: var(--heart);
+            border-radius: 16px 16px 0 0;
+            animation: beat 1.5s infinite cubic-bezier(.68, -0.55, .27, 1.55);
+            box-shadow: 0 0 40px rgba(255, 77, 109, 0.5), 0 0 80px rgba(255, 107, 158, 0.25);
+            margin-bottom: 24px;
+        }
+        
+        .big-heart::before,
+        .big-heart::after {
+            content: "";
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: var(--heart);
+            border-radius: 50%;
+        }
+        
+        .big-heart::before {
+            top: -60px;
+            left: 0
+        }
+        
+        .big-heart::after {
+            left: 60px;
+            top: 0
+        }
+        
+        @keyframes beat {
+            0%,
+            100% {
+                transform: rotate(-45deg) scale(1)
+            }
+            30% {
+                transform: rotate(-45deg) scale(1.25)
+            }
+            50% {
+                transform: rotate(-45deg) scale(0.95)
+            }
+            70% {
+                transform: rotate(-45deg) scale(1.1)
+            }
+        }
+        
+        .msg {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent);
+            text-shadow: 0 0 15px rgba(255, 107, 158, 0.6);
+            margin-bottom: 20px;
+        }
+        
+        .password-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        input[type="password"] {
+            padding: 8px 14px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 107, 158, 0.25);
+            font-size: 16px;
+            text-align: center;
+            background: rgba(255, 107, 158, 0.05);
+            color: #fff;
+            outline: none;
+            transition: 0.3s;
+        }
+        
+        input[type="password"]:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(255, 107, 158, 0.5);
+            background: rgba(255, 107, 158, 0.1);
+        }
+        
+        button {
+            background: var(--accent);
+            color: #fff;
+            padding: 8px 14px;
+            border: none;
+            border-radius: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform .2s, background .2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px) scale(1.05);
+            background: #ff6b9e
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="big-heart"></div>
+    <div class="msg">“A tiny surprise for you ✨”</div>
+    <a href="dalya.html">
+        <button>back/گەڕانەوە</button>
+    </a>
+
+    <div class="password-container">
+        <input type="password" id="passInput" placeholder="پاسۆردی تۆ">
+        <button onclick="checkPassword()">Unlock</button>
+    </div>
+
+    <script>
+        const correctPassword = "دالیای من"; // پاسۆرد درستت اینجا بگۆرە
+
+        function checkPassword() {
+            const input = document.getElementById('passInput').value;
+            if (input === correctPassword) {
+                alert("💌 Surprise! Here is your secret message: 'I love you more than words can say!' ");
+                // فقط کاتێک پاسۆرد دروستە، بڕۆ بۆ پەڕەی داهاتوو
+                window.location.href = "suprise.html";
+            } else {
+                alert("❌ پاسۆرد هەڵەیە، دوبارە هەوڵ بده!");
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Floating Heart Surprise ❤️</title>
+    <style>
+         :root {
+            --bg: #0f1724;
+            --heart: #ff4d6d;
+            --accent: #ff6b9e;
+            --letter-bg: rgba(255, 107, 158, 0.1);
+        }
+        
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #08121a, #0a1426);
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+            color: #fff;
+            text-align: center;
+            padding: 24px;
+            overflow: hidden;
+        }
+        /* Heart */
+        
+        .big-heart {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            background: var(--heart);
+            border-radius: 16px 16px 0 0;
+            animation: beat 1.5s infinite cubic-bezier(.68, -0.55, .27, 1.55), float 4s ease-in-out infinite;
+            box-shadow: 0 0 30px rgba(255, 77, 109, 0.5), 0 0 60px rgba(255, 107, 158, 0.25);
+            z-index: 1;
+        }
+        
+        .big-heart::before,
+        .big-heart::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: var(--heart);
+            border-radius: 50%;
+        }
+        
+        .big-heart::before {
+            top: -50px;
+            left: 0
+        }
+        
+        .big-heart::after {
+            left: 50px;
+            top: 0
+        }
+        
+        @keyframes beat {
+            0%,
+            100% {
+                transform: translate(-50%, -50%) rotate(-45deg) scale(1)
+            }
+            30% {
+                transform: translate(-50%, -50%) rotate(-45deg) scale(1.25)
+            }
+            50% {
+                transform: translate(-50%, -50%) rotate(-45deg) scale(0.95)
+            }
+            70% {
+                transform: translate(-50%, -50%) rotate(-45deg) scale(1.1)
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translate(-50%, -50%) translateY(0) rotate(-45deg)
+            }
+            50% {
+                transform: translate(-50%, -50%) translateY(-20px) rotate(-45deg)
+            }
+            100% {
+                transform: translate(-50%, -50%) translateY(0) rotate(-45deg)
+            }
+        }
+        /* Letter container */
+        
+        .letter {
+            position: relative;
+            z-index: 2;
+            max-width: 400px;
+            background: var(--letter-bg);
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 0 20px rgba(255, 107, 158, 0.3);
+            font-size: 18px;
+            line-height: 1.6;
+            color: #fff;
+            text-align: right;
+            margin-bottom: 40px;
+        }
+        /* Password input */
+        
+        .password-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            z-index: 3;
+        }
+        
+        input[type="password"] {
+            padding: 10px 16px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 107, 158, 0.3);
+            font-size: 16px;
+            text-align: center;
+            background: rgba(255, 107, 158, 0.05);
+            color: #fff;
+            outline: none;
+            transition: 0.3s;
+        }
+        
+        input[type="password"]:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(255, 107, 158, 0.5);
+            background: rgba(255, 107, 158, 0.1);
+        }
+        
+        button {
+            background: var(--accent);
+            color: #fff;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform .2s, background .2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px) scale(1.05);
+            background: #ff6b9e;
+        }
+        /* Floating sparkles */
+        
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, #fff, #ff4d6d);
+            border-radius: 50%;
+            animation: floatSpark 4s infinite;
+            opacity: 0.8;
+            z-index: 0;
+        }
+        
+        @keyframes floatSpark {
+            0% {
+                transform: translateY(0)
+            }
+            50% {
+                transform: translateY(-30px)
+            }
+            100% {
+                transform: translateY(0)
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Heart -->
+    <div class="big-heart"></div>
+
+    <!-- Letter -->
+    <div class="letter">
+        بەخێربێی دڵم 💌<br><br> دڵم پڕە لە خۆشی بۆ تۆ و هەموو هەستەکانم تەنها بۆ تۆن. هەر جار کە چاوەکانت میبینم، هەستم زۆر زیاد دەبێت. تۆ جێگای تایبەتی لە دڵم دەگری. ئەم نامەیە هەموو دڵخوازیم نیشان دەدات و سوپرایزێکی خۆش بۆت هەیە. 💖✨
+        <a href="dalya2.html">
+            <button style="position: absolute; top: 300px; ">back/گەڕانەوە</button>
+        </a>
+    </div>
+
+    <!-- Password -->
+
+
+    <!-- Sparkles -->
+    <div class="sparkle" style="top:10%;left:20%;animation-delay:0s;"></div>
+    <div class="sparkle" style="top:30%;left:80%;animation-delay:1s;"></div>
+    <div class="sparkle" style="top:70%;left:50%;animation-delay:2s;"></div>
+    <div class="sparkle" style="top:50%;left:10%;animation-delay:1.5s;"></div>
+    <div class="sparkle" style="top:80%;left:70%;animation-delay:0.5s;"></div>
+
+    <script>
+    </script>
+
+</body>
+
+</html>

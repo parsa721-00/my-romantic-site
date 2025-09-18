@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Flirty Heart + بۆ دڵەکەی من</title>
+    <style>
+         :root {
+            --bg: #0f1724;
+            --heart: #ff4d6d;
+            --accent: #ff6b9e
+        }
+        
+        html,
+        body {
+            height: 100%;
+            margin: 0
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at top, #132041, #071021);
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+            color: #fff;
+            text-align: center;
+            padding: 24px;
+            overflow: hidden;
+        }
+        
+        .heart {
+            width: 130px;
+            height: 130px;
+            position: relative;
+            transform: rotate(-45deg);
+            background: var(--heart);
+            border-radius: 12px 12px 0 0;
+            animation: beat 1.6s infinite cubic-bezier(.68, -0.55, .27, 1.55);
+            box-shadow: 0 0 40px rgba(255, 77, 109, 0.4), 0 0 80px rgba(255, 77, 109, 0.15);
+            margin-bottom: 22px;
+        }
+        
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            background: var(--heart);
+            border-radius: 50%;
+        }
+        
+        .heart::before {
+            top: -65px;
+            left: 0
+        }
+        
+        .heart::after {
+            left: 65px;
+            top: 0
+        }
+        
+        @keyframes beat {
+            0%,
+            100% {
+                transform: rotate(-45deg) scale(1)
+            }
+            30% {
+                transform: rotate(-45deg) scale(1.18)
+            }
+            50% {
+                transform: rotate(-45deg) scale(0.97)
+            }
+            70% {
+                transform: rotate(-45deg) scale(1.08)
+            }
+        }
+        
+        .flirt {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--accent);
+            text-shadow: 0 0 15px rgba(255, 107, 158, 0.55);
+            margin-bottom: 18px;
+            min-height: 32px;
+            opacity: 1;
+            transition: opacity .35s, transform .35s;
+        }
+        
+        .flirt.fade-out {
+            opacity: 0;
+            transform: translateY(-10px)
+        }
+        
+        .flirt.fade-in {
+            opacity: 1;
+            transform: translateY(0)
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center
+        }
+        
+        button {
+            background: transparent;
+            border: 2px solid rgba(255, 107, 158, 0.25);
+            color: var(--accent);
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: .3px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+            transition: transform .2s ease, background .2s ease, color .2s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-3px) scale(1.05);
+            background: rgba(255, 107, 158, 0.07)
+        }
+        
+        button:active {
+            transform: translateY(0) scale(.96)
+        }
+        
+        .small {
+            font-size: 13px;
+            opacity: .85;
+            padding: 6px 10px
+        }
+    </style>
+</head>
+
+<body>
+    <div class="heart" aria-hidden="true"></div>
+
+    <div class="flirt" id="flirtText">You make my heart skip a beat 💖</div>
+
+    <div class="controls">
+        <button id="cheBtn">ئێ</button>
+        <a href="dalya2.html">
+            <button a=h erf>❤️ Surprise</button>
+        </a>
+        <button id="toggleLang" class="small">کوردی/English</button>
+
+    </div>
+
+    <script>
+        const flirtText = document.getElementById('flirtText');
+        const cheBtn = document.getElementById('cheBtn');
+        const randomBtn = document.getElementById('randomBtn');
+        const toggle = document.getElementById('toggleLang');
+
+        const messages = {
+            en: [
+                "You make my heart skip a beat 💖",
+                "Can't stop thinking about you ✨",
+                "My favorite notification is your name.",
+                "You are my today and all of my tomorrows.",
+                "Every love story is beautiful, but ours is my favorite.",
+                "My heart beats faster every time I see you.",
+                "You + Me = Forever.",
+                "I still get butterflies just thinking about you.",
+                "I fall in love with you more every day.",
+                "You light up my life like nobody else.",
+                "I can't wait to see you again.",
+                "You make even the ordinary moments extraordinary.",
+                "I love the way you make me feel."
+            ],
+            ku: [
+                "ئەگەر دڵم توانای قسەکردن هەبوو، هەموو جار باسی تۆی دەکرد 💓",
+                "هەر جار سەیری چاوی تۆ دەکەم، هەست دەکەم کات وەستاوە ✨",
+                "هەر چەند جیهان گەورەیە، بەڵام تۆ جیهانی منیت.",
+                "بە تۆ دڵم ئاسودەیە.",
+                "هەموو شەو بە تۆوە خەوم لێدەکەوێت.",
+                "چاوەکانت وەک ئەستێرەن لە شەودا.",
+                "بێ تۆ، ژیانم بێ مانایە.",
+                "تۆ + من = هەموو کات.",
+                "تۆ هۆی خۆشحاڵییەکەمیت.",
+                "تۆ خۆشەویستترینی منیت."
+            ]
+        };
+
+        let lang = 'en';
+        let index = 0;
+
+        function showMessage(newIndex) {
+            flirtText.classList.remove('fade-in');
+            flirtText.classList.add('fade-out');
+            setTimeout(() => {
+                flirtText.textContent = messages[lang][newIndex];
+                flirtText.classList.remove('fade-out');
+                flirtText.classList.add('fade-in');
+            }, 300);
+        }
+
+        cheBtn.addEventListener('click', () => {
+            index = (index + 1) % messages[lang].length;
+            showMessage(index);
+        });
+
+        randomBtn.addEventListener('click', () => {
+            index = Math.floor(Math.random() * messages[lang].length);
+            showMessage(index);
+        });
+
+        toggle.addEventListener('click', () => {
+            lang = (lang === 'en') ? 'ku' : 'en';
+            index = 0;
+            showMessage(index);
+        });
+    </script>
+</body>
+
+</html>
